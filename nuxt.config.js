@@ -4,8 +4,8 @@ const cmaClient = require('./plugins/contentful-client').cmaClient
 
 const config = {
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     title: 'Custom app with Contentful',
     meta: [
@@ -17,17 +17,31 @@ const config = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
     ]
   },
+  modules: [
+    {
+      src: '@nuxtjs/google-analytics',
+      options: {
+        ua: 'UA-100560865-1'
+      }
+    },
+    {
+      src: '@nuxtjs/google-tag-manager',
+      options: {
+        id: 'GTM-NFSNF5H'
+      }
+    }
+  ],
   /*
-  ** Customize the progress-bar color
-  */
+   ** Customize the progress-bar color
+   */
   loading: { color: '#2199e8' },
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     /*
-    ** Run ESLINT on save
-    */
+     ** Run ESLINT on save
+     */
     extend (config, ctx) {
       if (ctx.isClient) {
         config.module.rules.push({
@@ -47,20 +61,20 @@ const config = {
   },
 
   /*
-  ** ᕕ( ᐛ )ᕗ CTF-BLOG-IN-5-MINUTES
-  ** Make client available everywhere via Nuxt plugins
-  */
+   ** ᕕ( ᐛ )ᕗ CTF-BLOG-IN-5-MINUTES
+   ** Make client available everywhere via Nuxt plugins
+   */
   plugins: ['~plugins/contentful-client'],
 
   /*
-  ** ᕕ( ᐛ )ᕗ CTF-BLOG-IN-5-MINUTES
-  ** Get all blog posts from Contentful
-  ** and generate the needed files upfront
-  **
-  ** Included:
-  ** - blog posts
-  ** - available blog post tags
-  */
+   ** ᕕ( ᐛ )ᕗ CTF-BLOG-IN-5-MINUTES
+   ** Get all blog posts from Contentful
+   ** and generate the needed files upfront
+   **
+   ** Included:
+   ** - blog posts
+   ** - available blog post tags
+   */
   generate: {
     routes () {
       return Promise.all([
@@ -70,12 +84,12 @@ const config = {
         cmaClient.getSpace(ctfConfig.CTF_SPACE_ID)
           .then(space => space.getContentType(ctfConfig.CTF_BLOG_POST_TYPE_ID))
       ])
-      .then(([entries, postType]) => {
-        return [
-          ...entries.items.map(entry => `blog/${entry.fields.slug}`),
-          ...postType.fields.find(field => field.id === 'tags').items.validations[0].in.map(tag => `tags/${tag}`)
-        ]
-      })
+        .then(([entries, postType]) => {
+          return [
+            ...entries.items.map(entry => `blog/${entry.fields.slug}`),
+            ...postType.fields.find(field => field.id === 'tags').items.validations[0].in.map(tag => `tags/${tag}`)
+          ]
+        })
     }
   },
 

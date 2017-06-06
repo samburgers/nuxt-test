@@ -1,8 +1,13 @@
 <template>
   <div class="container">
-    <!--<Greeting></Greeting>-->
+    <Greeting></Greeting>
     <main role="main">
       <nuxt/>
+    </main>
+  </div>
+</template>
+
+<script>
   import Greeting from '~components/greeting.vue'
 
   export default {

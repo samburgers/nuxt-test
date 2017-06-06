@@ -17,20 +17,6 @@ const config = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
     ]
   },
-  modules: [
-    {
-      src: '@nuxtjs/google-analytics',
-      options: {
-        ua: 'UA-100560865-1'
-      }
-    },
-    {
-      src: '@nuxtjs/google-tag-manager',
-      options: {
-        id: 'GTM-NFSNF5H'
-      }
-    }
-  ],
   /*
    ** Customize the progress-bar color
    */
@@ -64,7 +50,10 @@ const config = {
    ** ᕕ( ᐛ )ᕗ CTF-BLOG-IN-5-MINUTES
    ** Make client available everywhere via Nuxt plugins
    */
-  plugins: ['~plugins/contentful-client'],
+  plugins: [
+    '~plugins/contentful-client',
+    { src: '~plugins/vue-analytics', ssr: false }
+  ],
 
   /*
    ** ᕕ( ᐛ )ᕗ CTF-BLOG-IN-5-MINUTES

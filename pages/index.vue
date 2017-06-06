@@ -3,7 +3,7 @@
     <!-- Homepage header -->
     <header class="home header">
       <div class="picture">
-        <img :src="person.fields.image.fields.file.url + '?w=1200'">
+        <img :src="person.fields.image.fields.file.url + '?w=1200&q=80'">
       </div>
       <div class="foreground">
         <div class="page-bar wrapper">

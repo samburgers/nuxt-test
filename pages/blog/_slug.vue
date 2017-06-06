@@ -39,6 +39,7 @@ import {cdaClient} from '../../plugins/contentful-client.js'
 import Navigation from '~components/navigation.vue'
 
 export default {
+  transition: 'fade',
   asyncData ({ params }) {
     return cdaClient.getEntries({
       'content_type': process.env.CTF_BLOG_POST_TYPE_ID,

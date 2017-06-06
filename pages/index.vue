@@ -54,6 +54,7 @@ import Navigation from '~components/navigation.vue'
 import ArticlePreview from '~components/article-preview.vue'
 
 export default {
+  transition: 'fade',
   asyncData ({ params }) {
     return Promise.all([
       cdaClient.getEntries({

@@ -33,6 +33,7 @@
   import ArticlePreview from '~components/article-preview.vue'
 
   export default {
+    transition: 'fade',
     asyncData ({ params }) {
       return cdaClient.getEntries({
         'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
